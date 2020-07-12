@@ -1,19 +1,24 @@
-import authenticate from './src/methods/authentificate'
+import axios from 'axios'
+import authentficate from './src/methods/authentificate'
 import checkAuthAndCall from './src/infra/checkAuthAndCall'
 import listPayments from './src/methods/listPayments'
 
-async function InitSdk ({url, credentials}) {
-    this.url = url
+function InitSdk ({url, credentials}) {
     this.credentials = credentials
-    this.authenticate = authenticate
-    await authenticate()
-    const methodsWithAuth = [
-        'listPayments',
-        'createPayment'
-    ].map(method => checkAuthAndCall.bind(this, method))
+    this.authentficate = authentficate
 
-    return {
-        authenticate,
-        ...methodsWithAuth
-    }
+    axios.defaults.baseURL = url
+    const methods = {}
+    const methodsWithAuth = [
+        listPayments,
+        /*createPayment*/
+    ].forEach(method => {
+        methods[method.name] = checkAuthAndCall.bind(this, method)
+    })
+
+    console.log(this)
+
+    return methods
 };
+
+export default InitSdk

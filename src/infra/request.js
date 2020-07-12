@@ -1,18 +1,18 @@
 import axios from 'axios'
 
-const request = async function ({method = 'get', path, options}) {
+const request = async function ({ method = 'get', path, options = {} }) {
+  console.log(this)
   const requestConfig = {
     method,
-    path,
-    baseUrl: this.url,
-    headers: options.headers,
-    data: options.data,
+    url: path,
+    ...options
   }
-  return axios.getUri(requestConfig)
+  return axios.request(requestConfig)
     .then(response => response.data)
-    .catch(err => {
-      console.log(`Error occured while request with options ${requestConfig}`)
-      throw err
+    .catch(error => {
+      console.log(error.request);
+      console.log(`Error occured while request with options ${error}`)
+      throw error
     })
 }
 export default request

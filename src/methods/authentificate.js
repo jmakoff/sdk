@@ -1,10 +1,17 @@
 import request from '../infra/request'
 
-const authentificate = async () =>  {
+const authentificate = async function(argument) {
+  console.log('authentificate')
+  console.log(this)
+  const { username, password } = this.credentials
   console.log(`start authenticate procedure with name ${username} and password: ${password}`)
-  const method = '/authenticate'
-  this.authData = await request({method, credentials: this.credentials})
-  console.log(`auth data: ${this.authData}`)
+  const method = 'post'
+  const path = '/authenticate'
+  const requestOptions = {
+    data: this.credentials
+  }
+  this.authData = await request.call(this, { method, path, options: requestOptions })
+  console.log(`auth data: ${JSON.stringify(this.authData)}`)
   return this.authData
 }
 

@@ -1,8 +1,10 @@
-const checkAuthAndCall = function (method, options = {}) {
-  if (!authData || !authData.expiresIn || authData.expiresIn <= Date.now() ) {
-    this.authenticate()
+import authentficate from '../methods/authentificate'
+
+const checkAuthAndCall = async function (method, options = {}) {
+  if (!this.authData || !this.authData.expiresIn || this.authData.expiresIn <= Date.now() ) {
+    await this.authentficate()
   }
-  return method(options)
+  return method.call(this, options)
 }
 
 export default checkAuthAndCall

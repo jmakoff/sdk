@@ -1,17 +1,17 @@
 import request from '../infra/request'
 
-const listPayment = async () => {
+const listPayments = async function() {
   const options = {
     headers: {
-      Authorization: `Bearer ${this.authData.token}`
+      Authorization: `Bearer ${this.authData.authToken}`
     }
   }
-  const payments = await request({
+  const payments = await request.call(this, {
     method: 'get',
-    path: '/v1/payments',
+    path: '/payments',
     options,
   })
   return payments
 }
 
-export default listPayment
+export default listPayments
