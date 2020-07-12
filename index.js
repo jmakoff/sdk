@@ -2,6 +2,7 @@ import axios from 'axios'
 import authentficate from './src/methods/authentificate'
 import checkAuthAndCall from './src/infra/checkAuthAndCall'
 import listPayments from './src/methods/listPayments'
+import createPayment from './src/methods/createPayment'
 
 function InitSdk ({url, credentials}) {
     this.credentials = credentials
@@ -11,12 +12,10 @@ function InitSdk ({url, credentials}) {
     const methods = {}
     const methodsWithAuth = [
         listPayments,
-        /*createPayment*/
+        createPayment
     ].forEach(method => {
         methods[method.name] = checkAuthAndCall.bind(this, method)
     })
-
-    console.log(this)
 
     return methods
 };

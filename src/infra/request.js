@@ -1,7 +1,12 @@
 import axios from 'axios'
 
 const request = async function ({ method = 'get', path, options = {} }) {
-  console.log(this)
+  if (this.authData && this.authData.authToken) {
+    options.headers = {
+      ...options.headers,
+      Authorization: `Bearer ${this.authData.authToken}`
+    }
+  }
   const requestConfig = {
     method,
     url: path,
