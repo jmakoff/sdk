@@ -4,13 +4,16 @@
   "description": "Small sdk wrapper for api.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require esm"
+    "test": "mocha --require esm",
+    "lint": "xo",
+    "lint-fix": "xo --fix"
   },
   "author": "Yuriy Makov",
   "license": "ISC",
   "devDependencies": {
     "esm": "^3.2.25",
-    "mocha": "^8.0.1"
+    "mocha": "^8.0.1",
+    "xo": "^0.32.1"
   },
   "dependencies": {
     "axios": "^0.19.2"
