@@ -2,10 +2,10 @@ import Sdk from '..'
 
 describe('Test api', function () {
 	this.timeout(5000)
-	const testUrl = 'https://solitary-resonance-3442.getsandbox.com:443/v1'
+	const baseUrl = 'https://solitary-resonance-3442.getsandbox.com:443/v1'
 	it('should give payments list', async () => {
 		const sdk = new Sdk({
-			url: testUrl,
+			url: baseUrl,
 			credentials: {username: 'cool_business', password: 's3cur3passw0rd'}
 		})
 		return sdk.listPayments()
@@ -13,7 +13,7 @@ describe('Test api', function () {
 
 	it('should create payment', async () => {
 		const sdk = new Sdk({
-			url: testUrl,
+			url: baseUrl,
 			credentials: {username: 'cool_business', password: 's3cur3passw0rd'}
 		})
 		return sdk.createPayment({
@@ -28,7 +28,7 @@ describe('Test api', function () {
 
 	it('should fetch payment', async () => {
 		const sdk = new Sdk({
-			url: testUrl,
+			url: baseUrl,
 			credentials: {username: 'cool_business', password: 's3cur3passw0rd'}
 		})
 		return sdk.getPayment(10)
@@ -36,7 +36,7 @@ describe('Test api', function () {
 
 	it('should approve payment', async () => {
 		const sdk = new Sdk({
-			url: testUrl,
+			url: baseUrl,
 			credentials: {username: 'cool_business', password: 's3cur3passw0rd'}
 		})
 		return sdk.approvePayment(10)
@@ -44,7 +44,7 @@ describe('Test api', function () {
 
 	it('should cancel payment', async () => {
 		const sdk = new Sdk({
-			url: testUrl,
+			url: baseUrl,
 			credentials: {username: 'cool_business', password: 's3cur3passw0rd'}
 		})
 		return sdk.cancelPayment(10)
